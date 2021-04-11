@@ -12,7 +12,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 <br>
 
 <div class=xlfont> 
-<mark>The course website for STA130 Winter 2019 can be found on [Quercus](https://q.utoronto.ca) </mark>
+<!-- <mark>The course website for STA130 Winter 2019 can be found on [Quercus](https://q.utoronto.ca) </mark> -->
 
 </div>
 
@@ -50,7 +50,7 @@ Weekly office hours will be held on:
 
 ## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Instructors
 
-[Professor Nathan Taback](http://utstat.toronto.edu/~nathan/) and Professor Nathalie Moon.
+[Professor William Claster](http://www.apu.ac.jp) 
 
 ## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Syllabus
 

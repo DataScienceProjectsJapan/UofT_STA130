@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
 <title>Using R Markdown for Class Assignments</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -45,37 +60,10 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
-</head>
 
-<body>
+
 
 <style type = "text/css">
 .main-container {
@@ -83,58 +71,68 @@ h6 {
   margin-left: auto;
   margin-right: auto;
 }
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
 }
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
+.dropdown-submenu {
+  position: relative;
 }
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
 }
-
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
 }
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
 }
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
 }
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+.dropdown-submenu.pull-left {
+  float: none;
 }
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -145,54 +143,85 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
-
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +235,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +276,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -252,14 +285,24 @@ div.tocify {
 
 </style>
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -285,42 +328,42 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="Fall2018/STA130syllabus2018S-Fall2018.html">
-        <span class="fas fa fas fa-info"></span>
+        <span class="fas fa-info"></span>
          
         Syllabus
       </a>
     </li>
     <li>
       <a href="Fall2018/STA130-Fall2018-Calendar.html">
-        <span class="far fa far fa-calendar-alt"></span>
+        <span class="far fa-calendar-alt"></span>
          
         Course Calendar
       </a>
     </li>
     <li>
       <a href="Fall2018/fall2018_course_content.html">
-        <span class="fa fa-slideshare"></span>
+        <span class="fas fa-slideshare"></span>
          
         Course Content
       </a>
     </li>
     <li>
       <a href="Fall2018/term_test_Fall2018.html">
-        <span class="fa fa-slideshare"></span>
+        <span class="fas fa-slideshare"></span>
          
         Midterm Test
       </a>
     </li>
     <li>
       <a href="Fall2018/Finalproject/sta130posterpresentation_student_Fall2018.html">
-        <span class="fa fa-users"></span>
+        <span class="fas fa-users"></span>
          
         Final Project
       </a>
     </li>
     <li>
       <a href="Fall2018/finalexam_fall2018.html">
-        <span class="fas fa fas fa-info"></span>
+        <span class="fas fa-info"></span>
          
         Final Exam
       </a>
@@ -336,14 +379,14 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="R_resources.html">
-        <span class="fas fa fas fa-code"></span>
+        <span class="fas fa-code"></span>
          
         R Resources
       </a>
     </li>
     <li>
       <a href="Datasci.html">
-        <span class="fas fa fas fa-flask"></span>
+        <span class="fas fa-flask"></span>
          
         Data Science
       </a>
@@ -360,28 +403,28 @@ div.tocify {
     <li class="dropdown-header">Winter 2018 (last term)</li>
     <li>
       <a href="STA130syllabus2018S.html">
-        <span class="fas fa fas fa-info"></span>
+        <span class="fas fa-info"></span>
          
         Syllabus
       </a>
     </li>
     <li>
       <a href="course_content.html">
-        <span class="fa fa-slideshare"></span>
+        <span class="fas fa-slideshare"></span>
          
         Course Content
       </a>
     </li>
     <li>
       <a href="project_info.html">
-        <span class="fa fa-users"></span>
+        <span class="fas fa-users"></span>
          
         Final Project
       </a>
     </li>
     <li>
       <a href="term_test_2018.html">
-        <span class="fa fa-users"></span>
+        <span class="fas fa-users"></span>
          
         Term Test
       </a>
@@ -396,12 +439,12 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Using R Markdown for Class Assignments</h1>
-<h4 class="date"><em>December 2017</em></h4>
+<h4 class="date">December 2017</h4>
 
 </div>
 
@@ -648,7 +691,7 @@ SAT_2010 %&gt;% ggplot(aes(write,..density..)) + geom_histogram() + geom_density
 </div>
 <div id="inline-code" class="section level3">
 <h3>Inline Code</h3>
-<p>Code output can also be seamlessly incorporated into the text, using <strong>inline code</strong>. This is code not set off on a line by itself, but beginning with <code>`r</code> and ending with <code>`</code>. Using inline code is how this document knows that the <code>SAT_2010</code> data set contains 50 rows (<code>contains 50 rows</code>), and that the median SAT writing score was 511.5 (<code>511.5</code>).</p>
+<p>Code output can also be seamlessly incorporated into the text, using <strong>inline code</strong>. This is code not set off on a line by itself, but beginning with <code></code>r <code>and ending with</code> <code></code>. Using inline code is how this document knows that the <code>SAT_2010</code> data set contains 50 rows (<code>contains 50 rows</code>), and that the median SAT writing score was 511.5 (<code>511.5</code>).</p>
 <p>Notice that inline code does <em>not</em> display the commands run, just their output.</p>
 </div>
 <div id="seen-but-not-heard" class="section level3">
@@ -666,12 +709,13 @@ SAT_2010 %&gt;% ggplot(aes(write,..density..)) + geom_histogram() + geom_density
 ## (Intercept) 600.018506474 3.780370e+01 15.871950 9.930929e-21
 ## salary       -0.001445845 6.841402e-04 -2.113376 3.979291e-02</code></pre>
 <p>with</p>
-<pre class="r"><code>library(knitr) # Only need this the first time!
-kable(coefficients(summary(lm(write ~ salary, data = SAT_2010))))</code></pre>
+<pre class="r"><code>library(knitr) # Only need this the first time!</code></pre>
+<pre><code>## Warning: package &#39;knitr&#39; was built under R version 4.0.4</code></pre>
+<pre class="r"><code>kable(coefficients(summary(lm(write ~ salary, data = SAT_2010))))</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">Estimate</th>
 <th align="right">Std. Error</th>
 <th align="right">t value</th>
@@ -680,14 +724,14 @@ kable(coefficients(summary(lm(write ~ salary, data = SAT_2010))))</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>(Intercept)</td>
+<td align="left">(Intercept)</td>
 <td align="right">600.0185065</td>
 <td align="right">37.8037036</td>
 <td align="right">15.871950</td>
 <td align="right">0.0000000</td>
 </tr>
 <tr class="even">
-<td>salary</td>
+<td align="left">salary</td>
 <td align="right">-0.0014458</td>
 <td align="right">0.0006841</td>
 <td align="right">-2.113376</td>
@@ -751,12 +795,12 @@ e^{i \pi} = -1
 \[
 e^{i \pi} = -1
 \]</code></pre>
-<p>Once your text has entered math mode, R Markdown turns over the job of converting your text into math to a different program, called LaTeX<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. This is the most common system for typesetting mathematical documents throughout the sciences, and has been for decades. It is extremely powerful, stable, available on basically every computer, and completely free. It is also, in its full power, pretty complicated. Fortunately, the most useful bits, for our purposes, are actually rather straightforward.</p>
+<p>Once your text has entered math mode, R Markdown turns over the job of converting your text into math to a different program, called LaTeX<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. This is the most common system for typesetting mathematical documents throughout the sciences, and has been for decades. It is extremely powerful, stable, available on basically every computer, and completely free. It is also, in its full power, pretty complicated. Fortunately, the most useful bits, for our purposes, are actually rather straightforward.</p>
 <div id="elements-of-math-mode" class="section level3">
 <h3>Elements of Math Mode</h3>
 <ul>
-<li>Most letters will be rendered in italics (compare: a vs. <code>a</code> vs. <span class="math inline">\(a\)</span>; only the last is in math mode). The spacing between letters also follows the conventions for math, so don’t treat it as just another way of getting italics. (Compare <em>speed</em>, in simple italics, with <span class="math inline">\(speed\)</span>, in math mode.)</li>
-<li>Greek letters can be accessed with the slash in front of their names, as <code>\alpha</code> for <span class="math inline">\(\alpha\)</span>. Making the first letter upper case gives the upper-case letter, as in <code>\Gamma</code> for <span class="math inline">\(\Gamma\)</span> vs. <code>\gamma</code> for <span class="math inline">\(\gamma\)</span>. (Upper-case alpha and beta are the same as Roman A and B, so no special commands for them.)</li>
+<li>Most letters will be rendered in italics (compare: a vs. <code>a</code> vs. <span class="math inline">\(a\)</span>; only the last is in math mode). The spacing between letters also follows the conventions for math, so don’t treat it as just another way of getting italics. (Compare <em>speed</em>, in simple italics, with <span class="math inline">\(speed\)</span>, in math mode.)</li>
+<li>Greek letters can be accessed with the slash in front of their names, as <code>\alpha</code> for <span class="math inline">\(\alpha\)</span>. Making the first letter upper case gives the upper-case letter, as in <code>\Gamma</code> for <span class="math inline">\(\Gamma\)</span> vs. <code>\gamma</code> for <span class="math inline">\(\gamma\)</span>. (Upper-case alpha and beta are the same as Roman A and B, so no special commands for them.)</li>
 <li>There are other “slashed” (or “escaped”) commands for other mathematical symbols:
 <ul>
 <li><code>\times</code> for <span class="math inline">\(\times\)</span></li>
@@ -768,45 +812,38 @@ e^{i \pi} = -1
 <li>See, e.g., <a href="http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html" class="uri">http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html</a> for a fuller listing of available symbols. (<a href="http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf" class="uri">http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf</a> lists <em>all</em> symbols available in <code>LaTeX</code>, including many non-mathematical special chracters)</li>
 </ul></li>
 <li>Subscripts go after an underscore character, <code>_</code>, and superscripts go after a caret, <code>^</code>, as <code>\beta_1</code> for <span class="math inline">\(\beta_1\)</span> or <code>a^2</code> for <span class="math inline">\(a^2\)</span>.</li>
-<li>Curly braces are used to create groupings that should be kept together, e.g., <code>a_{ij}</code> for <span class="math inline">\(a_{ij}\)</span> (vs. <code>a_ij</code> for <span class="math inline">\(a_ij\)</span>).</li>
+<li>Curly braces are used to create groupings that should be kept together, e.g., <code>a_{ij}</code> for <span class="math inline">\(a_{ij}\)</span> (vs. <code>a_ij</code> for <span class="math inline">\(a_ij\)</span>).</li>
 <li>If you need something set in ordinary (Roman) type within math mode, use <code>\mathrm</code>, as <code>t_{\mathrm{in}}^2</code> for <span class="math inline">\(t_{\mathrm{in}}^2\)</span>.</li>
 <li>If you’d like something set in an outline font (“blackboard bold”), use <code>\mathbb</code>, as <code>\mathbb{R}</code> for <span class="math inline">\(\mathbb{R}\)</span>.</li>
-<li><p>For bold face, use <code>\mathbf</code>, as</p>
+<li>For bold face, use <code>\mathbf</code>, as</li>
+</ul>
 <pre><code>(\mathbf{x}^T\mathbf{x})^{-1}\mathbf{x}^T\mathbf{y}</code></pre>
-for <span class="math display">\[
+<p>for <span class="math display">\[
 (\mathbf{x}^T\mathbf{x})^{-1}\mathbf{x}^T\mathbf{y}
-\]</span></li>
-<li>Accents on characters work rather like changes of font: <code>\vec{a}</code> produces <span class="math inline">\(\vec{a}\)</span>, <code>\hat{a}</code> produces <span class="math inline">\(\hat{a}\)</span>. Some accents, particularly hats, work better if they space out, as with <code>\widehat{\mathrm{Var}}</code> producing <span class="math inline">\(\widehat{\mathrm{Var}}\)</span>.</li>
-<li>Function names are typically written in romans, and spaced differently: thus <span class="math inline">\(\log{x}\)</span>, not <span class="math inline">\(log x\)</span>. <code>LaTeX</code>, and therefore <code>R Markdown</code>, knows about a lot of such functions, and their names all begin with <code>\</code>. For instance: <code>\log</code>, <code>\sin</code>, <code>\cos</code>, <code>\exp</code>, <code>\min</code>, etc. Follow these function names with the argument in curly braces; this helps <code>LaTeX</code> figure out what exactly the argument is, and keep it grouped together with the function name when it’s laying out the text. Thus <code>\log{(x+1)}</code> is better than <code>\log (x+1)</code>.</li>
-<li><p>Fractions can be created with <code>\frac</code>, like so:</p>
+\]</span> * Accents on characters work rather like changes of font: <code>\vec{a}</code> produces <span class="math inline">\(\vec{a}\)</span>, <code>\hat{a}</code> produces <span class="math inline">\(\hat{a}\)</span>. Some accents, particularly hats, work better if they space out, as with <code>\widehat{\mathrm{Var}}</code> producing <span class="math inline">\(\widehat{\mathrm{Var}}\)</span>. * Function names are typically written in romans, and spaced differently: thus <span class="math inline">\(\log{x}\)</span>, not <span class="math inline">\(log x\)</span>. <code>LaTeX</code>, and therefore <code>R Markdown</code>, knows about a lot of such functions, and their names all begin with <code>\</code>. For instance: <code>\log</code>, <code>\sin</code>, <code>\cos</code>, <code>\exp</code>, <code>\min</code>, etc. Follow these function names with the argument in curly braces; this helps <code>LaTeX</code> figure out what exactly the argument is, and keep it grouped together with the function name when it’s laying out the text. Thus <code>\log{(x+1)}</code> is better than <code>\log (x+1)</code>. * Fractions can be created with <code>\frac</code>, like so:</p>
 <pre><code>\frac{a+b}{b} = 1 + \frac{a}{b}</code></pre>
-produces <span class="math display">\[
+<p>produces <span class="math display">\[
 \frac{a+b}{b} = 1 + \frac{a}{b}
-\]</span></li>
-<li><p>Sums can be written like so:</p>
+\]</span> * Sums can be written like so:</p>
 <pre><code>\sum_{i=1}^{n}{x_i^2}</code></pre>
-will produce <span class="math display">\[
+<p>will produce <span class="math display">\[
 \sum_{i=1}^{n}{x_i^2}
 \]</span> The lower and upper limits of summation after the <code>\sum</code> are both optional. Products and integrals work similarly, only with <code>\prod</code> and <code>\int</code>: <span class="math display">\[
 n! = \prod_{i=1}^{n}{i}
 \]</span> <span class="math display">\[
 \log{b} - \log{a} = \int_{x=a}^{x=b}{\frac{1}{x} dx}
-\]</span> <code>\sum</code>, <code>\prod</code> and <code>\int</code> all automatically adjust to the size of the expression being summed, producted or integrated.</li>
-<li><p>“Delimiters”, like parentheses or braces, can automatically re-size to match what they’re surrounding. To do this, you need to use <code>\left</code> and <code>\right</code>, as</p>
+\]</span> <code>\sum</code>, <code>\prod</code> and <code>\int</code> all automatically adjust to the size of the expression being summed, producted or integrated. * “Delimiters”, like parentheses or braces, can automatically re-size to match what they’re surrounding. To do this, you need to use <code>\left</code> and <code>\right</code>, as</p>
 <pre><code>\left( \sum_{i=1}^{n}{i} \right)^2 = \left( \frac{n(n-1)}{2}\right)^2 = \frac{n^2(n-1)^2}{4}</code></pre>
-renders as <span class="math display">\[
+<p>renders as <span class="math display">\[
 \left( \sum_{i=1}^{n}{i} \right)^2 = \left( \frac{n(n-1)}{2}\right)^2 = \frac{n^2(n-1)^2}{4}
-\]</span></li>
-<li>To use curly braces as delimiters, precede them with slashes, as <code>\{</code> and <code>\}</code> for <span class="math inline">\(\{\)</span> and <span class="math inline">\(\}\)</span>.</li>
-<li><p>Multiple equations, with their equals signs lined up, can be created using <code>eqnarray</code>, as follows.</p>
+\]</span> + To use curly braces as delimiters, precede them with slashes, as <code>\{</code> and <code>\}</code> for <span class="math inline">\(\{\)</span> and <span class="math inline">\(\}\)</span>. * Multiple equations, with their equals signs lined up, can be created using <code>eqnarray</code>, as follows.</p>
 <pre><code>\[
 \begin{eqnarray}
 X &amp; \sim &amp; \mathrm{N}(0,1)\\
 Y &amp; \sim &amp; \chi^2_{n-p}\\
 R &amp; \equiv &amp; X/Y \sim t_{n-p}
 \end{eqnarray}
-\]</code></pre></li>
-</ul>
+\]</code></pre>
 <p><span class="math display">\[
 \begin{eqnarray}
 X &amp; \sim &amp; \mathrm{N}(0,1)\\
@@ -916,14 +953,14 @@ n^2 -1 &amp; = &amp; n^2\\
 <p>For an thorough, entertaining, and completely correct explanation of why “The word processor is a stupid and grossly inefficient tool for preparing text for communication with others”, see <a href="http://ricardo.ecn.wfu.edu/~cottrell/wp.html" class="uri">http://ricardo.ecn.wfu.edu/~cottrell/wp.html</a>.</p>
 <div id="acknowledgments" class="section level3">
 <h3>Acknowledgments</h3>
-<p>This document borrows heavily from Prof. <a href="http://www.stat.cmu.edu/~cshalizi/">Cozma Shalizi</a>’s <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown/">Using R Markdown for Class Reports</a>.</p>
+<p>This document borrows heavily from Prof. <a href="http://www.stat.cmu.edu/~cshalizi/">Cozma Shalizi</a>’s <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown/">Using R Markdown for Class Reports</a>.</p>
 <p>R Markdown source for this page <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Rmarkdownforclassreports.Rmd"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>In the 1970s, the great computer scientist Donald Knuth wrote a mark-up language, and a rendering program for that language, called <code>TeX</code> (pronounced “tech”), for writing complex mathematical documents. In the 1980s, the computer scientist Leslie Lamport extended <code>TeX</code> in ways that made it rather more user-friendly, and called the result <code>LaTeX</code> (pronounced “la-tech”).<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>In the 1970s, the great computer scientist Donald Knuth wrote a mark-up language, and a rendering program for that language, called <code>TeX</code> (pronounced “tech”), for writing complex mathematical documents. In the 1980s, the computer scientist Leslie Lamport extended <code>TeX</code> in ways that made it rather more user-friendly, and called the result <code>LaTeX</code> (pronounced “la-tech”).<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -938,13 +975,56 @@ n^2 -1 &amp; = &amp; n^2\\
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
